@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Register Now</title>
+
+<script>
+function validateForm() {
+
+	if(document.getElementById("fname").value=="") {
+	alert("Enter your name !");
+	document.getElementById("fname").focus();
+	return false;
+	}
+
+	if(document.getElementById("uname").value=="") {
+	alert("Username Cannot be blank!");
+	document.getElementById("lname").focus();
+	return false;
+	}
+	
+	var re=/^\w+$/;
+	if(!re.test(document.getElementById("uname").value)) {
+	alert("Username must contain letters, numbers and underscore!");
+	document.getElementById("uname").focus();
+	return false;
+	}
+
+	var re=/^\w+([\.-]?w+)*@\w+([\.-]?w+)*(\.\w{2,3})+$/;
+	if(!re.test(document.getElementById("email").value)) {
+	alert("You have Entered an invalid email address !");
+	document.getElementById("email").focus();
+	return false;
+	}
+	
+	var re=/^\([7-9]{1})?([0-9]{9})$/;
+	if(!re.test(document.getElementById("mobileno").value)) {
+	alert("Mobile Number is Invalid !");
+	document.getElementById("mobileno").focus();
+	return false;
+	}
+	
+	if(document.getElementById("pass1").value)!=""&&(document.getElementById("pass1").value==document.getElementById("pass2").value) {
+		if(document.getElementById("pass1").value.length<6) {
+		alert("Password must contain atleast 6 characters ! ");
+		document.getElementById("pass1").focus();
+		return false;
+		}
+		
+		if(document.getElementById("pass1").value==document.getElementById("uname").value) {
+		alert("Password must be different from username ! ");
+		document.getElementById("pass1").focus();
+		return false;
+		}
+		
+	
+		re=/[a-z]/;
+		if(!re.test(document.getElementById("pass1").value)) {
+		alert("Password must contain atleast one lower case letter (a-z) !");
+		document.getElementById("pass1").focus();
+		return false;
+		}
+
+		re=/[A-Z]/;
+		if(!re.test(document.getElementById("pass1").value)) {
+		alert("Password must contain atleast one upper case letter (A-Z) !");
+		document.getElementById("pass1").focus();
+		return false;
+		}
+		else {
+		alert("You have entered a valid password");
+		}
+}
+</script>
+
+</head>
+
+<body>
+<div style="margin-left:25% ;margin-right:25% ; border: 1px solid black; auto 0">
+<div align="center" >
+<h1>Sign up </h1>
+</div>
+<div style="margin-left:25% ;margin-right:35% ; auto 0">
+<form name="regform" onsubmit="return validateForm()">
+First Name* : <br><input type="text" id="fname" required><br><br>
+Last Name* : <br><input type="text" id="lname"  required><br><br>
+User Name* : <br><input type="text" id="uname"  pattern="[a-zA-Z0-9]{6,}" title="Minimum 6 Characters Required" required><br><br>
+E-mail* : <br><input type="email" id="email" required><br><br>
+Mobile Number* : <br><input type="number" id="mobileno"  pattern="[7-9]{1}[0-9]{9}" required><br><br>
+Password* : <br><input type="password" id="pass1"  required><br><br>
+Re-enter Password* : <br><input type="password" id="pass2"  required><br><br>
+<input type="submit" id="submit" value="Signup" onclick="validateForm()">
+</form>
+</div>
+</div>
+</body>
+
+
+</html>
